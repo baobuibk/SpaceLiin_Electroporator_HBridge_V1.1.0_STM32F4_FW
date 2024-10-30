@@ -51,14 +51,14 @@
 /***********************************************/
 
 /*****************Voltage Switching*************/
-#define V_SWITCH_LIN1_HANDLE    TIM2
+#define V_SWITCH_LIN1_HANDLE    TIM3
 #define V_SWITCH_LIN1_CHANNEL   LL_TIM_CHANNEL_CH2
-
-#define V_SWITCH_LIN2_HANDLE    TIM2
-#define V_SWITCH_LIN2_CHANNEL   LL_TIM_CHANNEL_CH3
 
 #define V_SWITCH_HIN1_PORT      GPIOC
 #define V_SWITCH_HIN1_PIN       LL_GPIO_PIN_2
+
+#define V_SWITCH_LIN2_HANDLE    TIM3
+#define V_SWITCH_LIN2_CHANNEL   LL_TIM_CHANNEL_CH3
 
 #define V_SWITCH_HIN2_PORT      GPIOC
 #define V_SWITCH_HIN2_PIN       LL_GPIO_PIN_3

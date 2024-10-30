@@ -20,9 +20,9 @@ typedef enum _H_Bridge_mode_typedef_
 typedef struct _H_Bridge_typdef_
 {
     GPIO_TypeDef    *Port;
-    uint32_t        Pin;
-    bool            Pin_State;
-    PWM_TypeDef     *PWM;
+    uint32_t        *Pin;
+    bool            *Pin_State;
+    PWM_TypeDef     PWM;
     H_Bridge_mode   Mode;
     uint16_t        delay_time_ms;
     uint16_t        on_time_ms;
@@ -37,11 +37,14 @@ typedef struct _H_Bridge_typdef_
 extern H_Bridge_typdef *H_Bridge_array[8];
 extern H_Bridge_typdef *p_HB_pos_pole, *p_HB_neg_pole;
 */
-extern H_Bridge_typdef *p_HB_pos_pole;
-extern H_Bridge_typdef *p_HB_neg_pole;
+//extern H_Bridge_typdef *p_HB_pos_pole;
+//extern H_Bridge_typdef *p_HB_neg_pole;
 extern H_Bridge_typdef *p_HB_SD_0_3;
 extern H_Bridge_typdef *p_HB_SD_4_7;
-extern H_Bridge_typdef H_Bridge_array[8];
+//extern H_Bridge_typdef H_Bridge_array[8];
+
+extern H_Bridge_typdef HB_pos_pole;
+extern H_Bridge_typdef HB_neg_pole;
 
 extern uint8_t HB_pos_pole_index;
 extern uint8_t HB_neg_pole_index;
@@ -51,6 +54,8 @@ extern uint8_t HB_neg_pole_index;
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Class ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Prototype ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 void H_Bridge_Driver_Init(void);
+
+void H_Bridge_Set_Pole(void);
 
 void H_Bridge_Set_Mode(H_Bridge_typdef* H_Bridge_x, H_Bridge_mode SetMode);
 

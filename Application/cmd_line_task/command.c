@@ -75,9 +75,8 @@ int CMD_SET_PULSE_POLE(int argc, char *argv[])
 	HB_pos_pole_index = receive_argm[0] - 1;
 	HB_neg_pole_index = receive_argm[1] - 1;
 
-	p_HB_pos_pole = &H_Bridge_array[HB_pos_pole_index];
-	p_HB_neg_pole = &H_Bridge_array[HB_neg_pole_index];
-	
+	H_Bridge_Set_Pole();
+
 	return CMDLINE_OK;
 }
 

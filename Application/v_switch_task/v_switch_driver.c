@@ -76,7 +76,7 @@ void V_Switch_Driver_Init(void)
 void V_Switch_Set_Mode(V_Switch_mode SetMode)
 {
     LL_TIM_DisableCounter(V_Switch_HV.PWM->TIMx);
-    LL_TIM_DisableCounter(V_Switch_LV.PWM->TIMx);
+    //LL_TIM_DisableCounter(V_Switch_LV.PWM->TIMx);
 
     switch (SetMode)
     {
@@ -126,10 +126,10 @@ void V_Switch_Set_Mode(V_Switch_mode SetMode)
     }
 
     LL_TIM_GenerateEvent_UPDATE(V_Switch_HV.PWM->TIMx);
-    LL_TIM_GenerateEvent_UPDATE(V_Switch_LV.PWM->TIMx);
+    //LL_TIM_GenerateEvent_UPDATE(V_Switch_LV.PWM->TIMx);
 
     LL_TIM_EnableCounter(V_Switch_HV.PWM->TIMx);
-    LL_TIM_EnableCounter(V_Switch_LV.PWM->TIMx);
+    //LL_TIM_EnableCounter(V_Switch_LV.PWM->TIMx);
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Private Prototype ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
