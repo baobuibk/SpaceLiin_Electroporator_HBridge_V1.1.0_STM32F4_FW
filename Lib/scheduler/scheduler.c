@@ -8,7 +8,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "stm32f0xx.h"
+#include "stm32f411xe.h"
 
 #include "scheduler.h"
 

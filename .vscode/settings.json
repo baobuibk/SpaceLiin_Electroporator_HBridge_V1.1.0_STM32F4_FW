@@ -1,0 +1,19 @@
+{
+    "files.associations": {
+        "app.h": "c",
+        "stm32f4xx_ll_gpio.h": "c",
+        "stm32f411xe.h": "c",
+        "scheduler.h": "c",
+        "stdbool.h": "c",
+        "stdint.h": "c",
+        "cmd_line_task.h": "c",
+        "cmd_line.h": "c",
+        "uart.h": "c",
+        "command.h": "c",
+        "h_bridge_driver.h": "c",
+        "pwm.h": "c",
+        "stm32f4xx_ll_rcc.h": "c",
+        "stm32f4xx_ll_tim.h": "c",
+        "h_bridge_task.h": "c"
+    }
+}

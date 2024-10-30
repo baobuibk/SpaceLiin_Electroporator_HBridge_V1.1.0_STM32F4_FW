@@ -2,8 +2,9 @@
 #define APP_H_
 
 #include <stdbool.h>
+#include <stdint.h>
 
-#include "stm32f030xc.h"
+#include "stm32f411xe.h"
 
 // SYSTEM DRIVER //
 #include "board.h"
@@ -12,17 +13,20 @@
 #include "scheduler.h"
 
 // INCLUDE TASK //
-#include "adc_task.h"
+#include "cmd_line_task.h"
 #include "h_bridge_task.h"
 #include "v_switch_task.h"
-#include "cmd_line_task.h"
+/*
+#include "adc_task.h"
 #include "fsp_line_task.h"
 #include "impedance_task.h"
 #include "BMP390.h"
+*/
 
 // INCLUDE DRIVER //
 #include "h_bridge_driver.h"
-#include "v_switch_driver.h"
+//#include "v_switch_driver.h"
+
 
 // INCLUDE LIB //
 #include "uart.h"
