@@ -14,6 +14,12 @@
         "pwm.h": "c",
         "stm32f4xx_ll_rcc.h": "c",
         "stm32f4xx_ll_tim.h": "c",
-        "h_bridge_task.h": "c"
+        "h_bridge_task.h": "c",
+        "v_switch_task.h": "c",
+        "fsp_line_task.h": "c",
+        "fsp.h": "c",
+        "crc.h": "c",
+        "fsp_frame.h": "c",
+        "stdio.h": "c"
     }
 }

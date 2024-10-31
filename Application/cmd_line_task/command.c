@@ -22,8 +22,8 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Private Prototype ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Public Variables ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-extern uart_stdio_typedef  RS232_UART;
-extern uart_stdio_typedef  GPP_UART;
+//extern uart_stdio_typedef  RS232_UART;
+//extern uart_stdio_typedef  GPP_UART;
 
 //extern Accel_Gyro_DataTypedef _gyro, _accel;
 //extern PWM_TypeDef H_Bridge_1_PWM;
@@ -39,7 +39,7 @@ tCmdLineEntry g_psCmdTable[] =
     { "SET_PULSE_LV", 			CMD_SET_PULSE_LV, 			" : Set ls pulse on time and off time" },
     { "SET_PULSE_CONTROL", 		CMD_SET_PULSE_CONTROL, 		" : Start pulsing" },
 
-	//{ "GET_PULSE_COUNT",		CMD_GET_PULSE_POLE, 		" : Set pole for H Bridge Pole" },
+	{ "GET_PULSE_POLE",			CMD_GET_PULSE_POLE, 		" : Set pole for H Bridge Pole" },
 	{ "GET_PULSE_COUNT",		CMD_GET_PULSE_COUNT, 		" : Get number of pulse" },
 	{ "GET_PULSE_DELAY",		CMD_GET_PULSE_DELAY, 		" : Get delay between pulse hv and lv" },
 	{ "GET_PULSE_HV", 			CMD_GET_PULSE_HV, 			" : Get hs pulse on time and off time" },
@@ -205,7 +205,7 @@ int CMD_GET_PULSE_POLE(int argc, char *argv[])
 	else if (argc > 1)
 		return CMDLINE_TOO_MANY_ARGS;
 
-	UART_Printf(&RS232_UART, "PULSE POS POLE: %d; PULSE NEG POLE: %d\n", 
+	UART_Printf(&RS232_UART, "> PULSE POS POLE: %d; PULSE NEG POLE: %d\n", 
 	HB_pos_pole_index + 1, HB_neg_pole_index + 1);
 
 	return CMDLINE_OK;

@@ -4,7 +4,7 @@
 
 static void Status_Led(void*);
 
-#define         SCHEDULER_TASK_COUNT  3
+#define         SCHEDULER_TASK_COUNT  4
 uint32_t 		g_ui32SchedulerNumTasks = SCHEDULER_TASK_COUNT;
 tSchedulerTask 	g_psSchedulerTable[SCHEDULER_TASK_COUNT] =
                 {
@@ -21,6 +21,14 @@ tSchedulerTask 	g_psSchedulerTable[SCHEDULER_TASK_COUNT] =
                             10,                         //call every 1ms
                             0,                          //count from start
                             true                        //is active
+                    },
+                    {
+                            &FSP_Line_Task,
+                            (void *) 0,
+                            20,                         //call every 1ms
+                            0,                          //count from start
+                            true                        //is active
+
                     },
                     {
                             &Status_Led,
@@ -40,9 +48,10 @@ void App_Main(void)
     CMD_Line_Task_Init();
     H_Bridge_Driver_Init();
     V_Switch_Driver_Init();
+    FSP_Line_Task_Init();
+
     /*
     Current_Sense_Task_Init(LL_ADC_SAMPLINGTIME_7CYCLES_5);
-    FSP_Line_Task_Init();
     BMP390_init();
     */
 
