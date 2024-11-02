@@ -1,6 +1,6 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Private Include~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #include "fsp_line_task.h"
-#include <stdio.h>
+#include <string.h>
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Private Defines ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #define FSPLINE_OK	0
 
@@ -67,8 +67,7 @@ void FSP_Line_Task_Init()
 /* :::::::::: FSP Line Task ::::::::::::: */
 void FSP_Line_Task(void*)
 {
-	uint8_t time_out = 0;
-	int 	FSP_return;
+	uint8_t FSP_return, time_out = 0;
 
 	for (time_out = 50; (!RX_BUFFER_EMPTY(&GPC_UART)) && (time_out != 0); time_out--)
 	{

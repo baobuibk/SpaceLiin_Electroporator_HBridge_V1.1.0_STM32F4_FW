@@ -33,15 +33,8 @@ typedef struct _H_Bridge_typdef_
 }H_Bridge_typdef;
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Variables ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/*
-extern H_Bridge_typdef *H_Bridge_array[8];
-extern H_Bridge_typdef *p_HB_pos_pole, *p_HB_neg_pole;
-*/
-//extern H_Bridge_typdef *p_HB_pos_pole;
-//extern H_Bridge_typdef *p_HB_neg_pole;
 extern H_Bridge_typdef *p_HB_SD_0_3;
 extern H_Bridge_typdef *p_HB_SD_4_7;
-//extern H_Bridge_typdef H_Bridge_array[8];
 
 extern H_Bridge_typdef HB_pos_pole;
 extern H_Bridge_typdef HB_neg_pole;

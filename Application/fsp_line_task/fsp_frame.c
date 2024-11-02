@@ -1,13 +1,12 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Private Include~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#include <string.h>
 #include <stdlib.h>
-
-#include "stm32f4xx_ll_gpio.h"
 
 #include "app.h"
 
 #include "fsp_frame.h"
+#include "crc.h"
 //#include "pwm.h"
-//#include "fsp.h"
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Private Defines ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Private Prototype ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -92,6 +91,7 @@ case FSP_CMD_SET_PULSE_LV:
 	
 case FSP_CMD_SET_PULSE_CONTROL:
 {
+	H_Bridge_Set_Pole();
 	is_h_bridge_enable = pu_GPC_FSP_Payload->set_pulse_control.State;
 	SchedulerTaskEnable(0, 1);
 

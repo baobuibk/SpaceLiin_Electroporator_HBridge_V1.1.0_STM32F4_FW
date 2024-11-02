@@ -75,8 +75,6 @@ int CMD_SET_PULSE_POLE(int argc, char *argv[])
 	HB_pos_pole_index = receive_argm[0] - 1;
 	HB_neg_pole_index = receive_argm[1] - 1;
 
-	H_Bridge_Set_Pole();
-
 	return CMDLINE_OK;
 }
 
@@ -192,6 +190,7 @@ int CMD_SET_PULSE_CONTROL(int argc, char *argv[])
 	if ((receive_argm > 1) || (receive_argm < 0))
 		return CMDLINE_INVALID_ARG;
 
+	H_Bridge_Set_Pole();
 	is_h_bridge_enable = receive_argm;
 	SchedulerTaskEnable(0, 1);
 

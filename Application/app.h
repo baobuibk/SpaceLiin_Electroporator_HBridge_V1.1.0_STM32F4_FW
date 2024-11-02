@@ -1,10 +1,12 @@
 #ifndef APP_H_
 #define APP_H_
 
-#include <stdbool.h>
 #include <stdint.h>
+#include <stdbool.h>
+#include <stdlib.h>
 
 #include "stm32f411xe.h"
+#include "stm32f4xx_ll_gpio.h"
 
 // SYSTEM DRIVER //
 #include "board.h"

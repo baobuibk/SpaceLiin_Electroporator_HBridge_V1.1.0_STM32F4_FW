@@ -20,6 +20,7 @@
         "fsp.h": "c",
         "crc.h": "c",
         "fsp_frame.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "board.h": "c"
     }
 }
