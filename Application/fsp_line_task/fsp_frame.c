@@ -35,17 +35,17 @@ uint32_t        press;
 uint8_t hs_relay_pole, ls_relay_pole, relay_state;
 void FSP_Line_Process()
 {
-switch (pu_GPC_FSP_Payload->commonFrame.Cmd)
+switch (ps_GPC_FSP->CMD)
 {
 
 /* :::::::::: Pulse Control Command :::::::: */
 case FSP_CMD_SET_PULSE_COUNT:
 {
-	hv_pulse_pos_count 	= pu_GPC_FSP_Payload->set_pulse_count.HV_pos_count;
-	hv_pulse_neg_count 	= pu_GPC_FSP_Payload->set_pulse_count.HV_neg_count;
+	hv_pulse_pos_count 	= ps_GPC_FSP->Payload.set_pulse_count.HV_pos_count;
+	hv_pulse_neg_count 	= ps_GPC_FSP->Payload.set_pulse_count.HV_neg_count;
 
-	lv_pulse_pos_count 	= pu_GPC_FSP_Payload->set_pulse_count.LV_pos_count;
-	lv_pulse_neg_count 	= pu_GPC_FSP_Payload->set_pulse_count.LV_neg_count;
+	lv_pulse_pos_count 	= ps_GPC_FSP->Payload.set_pulse_count.LV_pos_count;
+	lv_pulse_neg_count 	= ps_GPC_FSP->Payload.set_pulse_count.LV_neg_count;
 
 	UART_Send_String(&RS232_UART, "Received FSP_CMD_PULSE_COUNT\r\n> ");
 	break;
@@ -54,12 +54,12 @@ case FSP_CMD_SET_PULSE_COUNT:
 
 case FSP_CMD_SET_PULSE_DELAY:
 {
-	hv_delay_ms = pu_GPC_FSP_Payload->set_pulse_delay.HV_delay;
-	lv_delay_ms	= pu_GPC_FSP_Payload->set_pulse_delay.LV_delay;
+	hv_delay_ms = ps_GPC_FSP->Payload.set_pulse_delay.HV_delay;
+	lv_delay_ms	= ps_GPC_FSP->Payload.set_pulse_delay.LV_delay;
 
-	pulse_delay_ms = pu_GPC_FSP_Payload->set_pulse_delay.Delay_high;
+	pulse_delay_ms = ps_GPC_FSP->Payload.set_pulse_delay.Delay_high;
 	pulse_delay_ms <<= 8;
-	pulse_delay_ms |= pu_GPC_FSP_Payload->set_pulse_delay.Delay_low;
+	pulse_delay_ms |= ps_GPC_FSP->Payload.set_pulse_delay.Delay_low;
 
 	UART_Send_String(&RS232_UART, "Received FSP_CMD_PULSE_DELAY\r\n> ");
 	break;
@@ -68,8 +68,8 @@ case FSP_CMD_SET_PULSE_DELAY:
 
 case FSP_CMD_SET_PULSE_HV:
 {
-	hv_on_time_ms 	= pu_GPC_FSP_Payload->set_pulse_HV.OnTime;
-	hv_off_time_ms 	= pu_GPC_FSP_Payload->set_pulse_HV.OffTime;
+	hv_on_time_ms 	= ps_GPC_FSP->Payload.set_pulse_HV.OnTime;
+	hv_off_time_ms 	= ps_GPC_FSP->Payload.set_pulse_HV.OffTime;
 
 	UART_Send_String(&RS232_UART, "Received FSP_CMD_PULSE_HV\r\n> ");
 	break;
@@ -77,13 +77,13 @@ case FSP_CMD_SET_PULSE_HV:
 	
 case FSP_CMD_SET_PULSE_LV:
 {
-	lv_on_time_ms 	= pu_GPC_FSP_Payload->set_pulse_LV.OnTime_high;
+	lv_on_time_ms 	= ps_GPC_FSP->Payload.set_pulse_LV.OnTime_high;
 	lv_on_time_ms   <<= 8;
-	lv_on_time_ms	|= pu_GPC_FSP_Payload->set_pulse_LV.OnTime_low;
+	lv_on_time_ms	|= ps_GPC_FSP->Payload.set_pulse_LV.OnTime_low;
 
-	lv_off_time_ms	= pu_GPC_FSP_Payload->set_pulse_LV.OffTime_high;
+	lv_off_time_ms	= ps_GPC_FSP->Payload.set_pulse_LV.OffTime_high;
 	lv_off_time_ms	<<= 8;
-	lv_off_time_ms	|= pu_GPC_FSP_Payload->set_pulse_LV.OffTime_low;
+	lv_off_time_ms	|= ps_GPC_FSP->Payload.set_pulse_LV.OffTime_low;
 
 	UART_Send_String(&RS232_UART, "Received FSP_CMD_PULSE_LV\r\n> ");
 	break;
@@ -92,7 +92,7 @@ case FSP_CMD_SET_PULSE_LV:
 case FSP_CMD_SET_PULSE_CONTROL:
 {
 	H_Bridge_Set_Pole();
-	is_h_bridge_enable = pu_GPC_FSP_Payload->set_pulse_control.State;
+	is_h_bridge_enable = ps_GPC_FSP->Payload.set_pulse_control.State;
 	SchedulerTaskEnable(0, 1);
 
 	UART_Send_String(&RS232_UART, "Received FSP_CMD_PULSE_CONTROL\r\n> ");
@@ -102,8 +102,8 @@ case FSP_CMD_SET_PULSE_CONTROL:
 
 case FSP_CMD_HANDSHAKE:
 {
-	pu_GPP_FSP_Payload->handshake.Cmd 	= FSP_CMD_HANDSHAKE;
-	pu_GPP_FSP_Payload->handshake.Check = 0xAB;
+	ps_GPP_FSP->CMD = FSP_CMD_HANDSHAKE;
+	ps_GPP_FSP->Payload.handshake.Check = 0xAB;
 	
 	fsp_print(2);
 	

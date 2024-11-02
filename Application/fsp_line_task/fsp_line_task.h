@@ -24,8 +24,8 @@ extern uart_stdio_typedef 	GPC_UART;
 extern fsp_packet_t		    s_GPC_FSP_Packet;
 extern fsp_packet_t		    s_GPP_FSP_Packet;
 
-extern GPC_FSP_Payload  	*pu_GPC_FSP_Payload;		//for RX
-extern GPP_FSP_Payload		*pu_GPP_FSP_Payload;		//for TX
+extern FSP_Payload  	    *ps_GPC_FSP;		//for RX
+extern FSP_Payload		    *ps_GPP_FSP;		//for TX
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Prototype ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* :::::::::: FSP Line Task Init :::::::: */

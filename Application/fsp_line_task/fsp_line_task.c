@@ -39,8 +39,8 @@ char 				g_GPC_UART_RX_buffer[GPP_RX_SIZE];
 
 fsp_packet_t 		s_GPC_FSP_Packet;
 fsp_packet_t 		s_GPP_FSP_Packet;
-GPC_FSP_Payload 	*pu_GPC_FSP_Payload = (GPC_FSP_Payload*) (&s_GPC_FSP_Packet.payload);		//for TX
-GPP_FSP_Payload 	*pu_GPP_FSP_Payload = (GPP_FSP_Payload*) (&s_GPP_FSP_Packet.payload);		//for RX
+FSP_Payload 		*ps_GPC_FSP = (FSP_Payload*) (&s_GPC_FSP_Packet.payload);		//for TX
+FSP_Payload 		*ps_GPP_FSP = (FSP_Payload*) (&s_GPP_FSP_Packet.payload);		//for RX
 
 fsp_line_typedef 	FSP_line;
 char 				g_FSP_line_buffer[FSP_BUF_LEN];
