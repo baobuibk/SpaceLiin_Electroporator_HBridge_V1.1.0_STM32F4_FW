@@ -4,7 +4,7 @@
 #include "h_bridge_driver.h"
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Private Defines ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 #define SD_DUTY_MIN \
-(APB1_TIMER_CLK * 50) / (H_Bridge_x->PWM.Prescaler * 1000000)
+((APB1_TIMER_CLK / 1000000) * 50) / (H_Bridge_x->PWM.Prescaler)
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Private Prototype ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Private Enum ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Private Struct ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -229,10 +229,10 @@ void H_Bridge_Set_Pulse_Timing(H_Bridge_typdef* H_Bridge_x, uint16_t Set_delay_t
 
     uint16_t min_time_ms =  (Set_on_time_ms < Set_off_time_ms) ? Set_on_time_ms : Set_off_time_ms;
      
-    H_Bridge_x->PWM.Prescaler   = ((APB1_TIMER_CLK * max_time_ms) / (UINT16_MAX * 1000)) + 1;
+    H_Bridge_x->PWM.Prescaler   = (((APB1_TIMER_CLK / 1000) * max_time_ms) / (UINT16_MAX)) + 1;
     H_Bridge_x->PWM.Prescaler   = (H_Bridge_x->PWM.Prescaler > UINT16_MAX) ? UINT16_MAX : H_Bridge_x->PWM.Prescaler;
 
-    H_Bridge_x->PWM.Duty        = (APB1_TIMER_CLK * min_time_ms) / (H_Bridge_x->PWM.Prescaler * 100 * 1000);
+    H_Bridge_x->PWM.Duty        = ((APB1_TIMER_CLK / 1000) * min_time_ms) / (H_Bridge_x->PWM.Prescaler * 100);
     H_Bridge_x->PWM.Duty        = (H_Bridge_x->PWM.Duty > SD_DUTY_MIN) ? H_Bridge_x->PWM.Duty : SD_DUTY_MIN;
 
     H_Bridge_x->delay_time_ms   = Set_delay_time_ms;
@@ -320,9 +320,9 @@ void H_Bridge_SD0_3_Interupt_Handle()
 /* ::::H_Bridge SD4_7 Interupt Handle:::: */
 void H_Bridge_SD4_7_Interupt_Handle()
 {
-    if(LL_TIM_IsActiveFlag_UPDATE(p_HB_SD_4_7->PWM.TIMx) == true)
+    if(LL_TIM_IsActiveFlag_UPDATE(H_BRIDGE_SD4_7_HANDLE) == true)
     {
-        LL_TIM_ClearFlag_UPDATE(p_HB_SD_4_7->PWM.TIMx);
+        LL_TIM_ClearFlag_UPDATE(H_BRIDGE_SD4_7_HANDLE);
 
         switch (p_HB_SD_4_7->Mode)
         {
@@ -331,7 +331,7 @@ void H_Bridge_SD4_7_Interupt_Handle()
 
             if (p_HB_SD_4_7->pulse_count >= ((p_HB_SD_4_7->set_pulse_count * 2) + 1))
             {
-                LL_TIM_DisableCounter(H_BRIDGE_SD0_3_HANDLE);
+                LL_TIM_DisableCounter(H_BRIDGE_SD4_7_HANDLE);
                 return;
             }
 

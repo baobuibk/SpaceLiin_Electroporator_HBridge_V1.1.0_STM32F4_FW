@@ -241,7 +241,7 @@ void H_Bridge_Task(void*)
             H_Bridge_State = H_BRIDGE_HV_1_STATE;
             */
         
-            is_h_bridge_enable = false;
+              is_h_bridge_enable = false;
             H_Bridge_State = H_BRIDGE_STOP_STATE;
         }
         break;
